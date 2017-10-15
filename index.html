@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Liquid Swords</title>
+    <meta name="description" content="Patterns and practices for framework agnostic functional components.">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Fondamento" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Julee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=League+Script" rel="stylesheet">
+
+    <!-- CSS WebSlides -->
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+
+    <!-- Optional - CSS SVG Icons (Font Awesome) -->
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/svg-icons.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-element/dist/markdown-element.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gza/dist/gza.min.js"></script>
+
+  </head>
+  <body>
+    <main role="main">
+      <article id="webslides" class="horizontal">
+        <section>
+          <div class="wrap aligncenter">
+            <style>
+              h1.main-title {
+                font-family: 'Julee', cursive;
+                font-weight: lighter	;
+              }
+              p.main-title {
+                font-family: 'Fondamento', cursive;
+              }
+            </style>
+            <h1 class="main-title">Liquid Swords</h1>
+            <p class="text-intro main-title">Patterns and Practices for Functional Components</p>
+          </div>
+        </section>
+
+        <section class="aligncenter slide">
+          <div class="wrap">
+            <h2 class="table-of-contents">36 Chambers</h2>
+            <p class="text-intro">Table of Contents.</p>
+            <ul class="flexblock border table-of-contents">
+              <li>
+                <div>
+                  <h3><a target="_blank" href="#slide=3">Basics</a></h3>
+                  <ol>
+                    <li><a target="_blank" href="#slide=3">Philosophy</a></li>
+                    <li><a target="_blank" href="#slide=4">Intro to GZA</a></li>
+                    <li><a target="_blank" href="#slide=5">Dynamic Rendering</a></li>
+                    <li><a target="_blank" href="#slide=6">Initialization Functions</a></li>
+                    <li><a target="_blank" href="#slide=7">Settings Explained</a></li>
+                    <li><a target="_blank" href="#slide=8">Requiring State</a></li>
+                  </ol>
+                </div>
+              </li>
+              <li>
+                <!--div required = padding li or li>a-->
+                <div>
+                  <h3><a target="_blank" href="#slide=33">Lifecycle & Subcomponents</a></h3>
+                  <ol>
+                    <li><a target="_blank" href="#slide=33">TODO</a></li>
+
+                  </ol>
+                </div>
+              </li>
+              <li>
+                <!--div required = padding li or li>a-->
+                <div>
+                  <h3><a target="_blank" href="#slide=51">Distribution</a></h3>
+                  <ol>
+                    <li><a target="_blank" href="#slide=51">TODO: npm</a></li>
+                    <li><a target="_blank" href="#slide=51">TODO: distjs</a></li>
+                    <li><a target="_blank" href="#slide=51">TODO: jsdelivr</a></li>
+                  </ol>
+                </div>
+              </li>
+              <li>
+                <!--div required = padding li or li>a-->
+                <div>
+                  <h3><a target="_blank" href="#slide=94">ShadowDOM</a></h3>
+                  <ol>
+                    <li><a target="_blank" href="#slide=95">TODO: intro</a></li>
+                    <li><a target="_blank" href="#slide=95">TODO: render slots</a></li>
+                  </ol>
+                </div>
+              </li>
+            </ul>
+          </div>
+            <!-- .end .wrap -->
+        </section>
+
+        <section class="slide" >
+          <div class="wrap" style="font-size: 150%;">
+            <style>
+              ul#product li {
+                margin-top: 13px;
+              }
+            </style>
+            <h2>Philosophy</h2>
+            <ul id="product">
+              <li>Build big things out of predictable, simple, small things.</li>
+              <li>Isolate visual component functionality into <strong>re-usable HTML elements</strong>.</li>
+              <li><strong>Extend the Web</strong> platform rather than build to a framework.</li>
+              <li>No special compiler or language extensions.</li>
+              <li>Scale down to a <i>script</i> include, scale up as an npm module.</li>
+              <li>Use functional programming patterns for render pipelines.</li>
+            </ul>
+          </div>
+          <!-- .end .wrap -->
+        </section>
+
+        <section class="slide">
+          <!--.wrap = container (width: 90%) -->
+          <div class="aligncenter">
+            <!-- alignment [class*="content-"] = container max-width:50% = 600px -->
+            <div>
+              <style>
+              p.gza-intro {
+                margin-top:15px;
+              }
+              </style>
+              <h3 style="margin-bottom:10px;">GZA: Functional HTML Elements</h3>
+              <mark-down class="zoomIn gza-intro">
+                ```js
+                const gza = require('gza')
+
+                gza`
+                <my-element>
+                  ${(settings, innerHTML) ⇒ `<wrap>${innerHTML}</wrap>`}
+                </my-element>
+                `
+                ```
+              </mark-down>
+              <p class="gza-intro">
+                Simple functional API for defining and rendering custom
+                HTML elements.
+              </p>
+            </div>
+          </div>
+          <!-- .end .wrap -->
+        </section>
+
+        <section>
+          <!--.wrap = container (width: 90%) -->
+          <div class="wrap">
+            <div class="grid vertical-align">
+              <div class="column">
+                <h3><strong>Dyanmic Rendering</strong></h3>
+                <p class="text-intro">Setting intialization and changes.</p>
+                <p>You can define settings, along with default values, for your element.</p>
+                <p>Any attribute or property changes on your element to those values will trigger a re-render of the element.</p>
+              </div>
+              <!-- .end .column -->
+              <style>
+                mark-down.dynamic-rendering pre {
+                  font-size: 80%;
+                }
+                mark-down.dynamic-rendering {
+                  min-width: 460px;
+                }
+                wrap-counter#example-wrap {
+                  min-width: 460px;
+                  background: #fff;
+                  border: 1px solid rgba(0, 20, 80, 0.1);
+                  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  padding: 10px 10px 10px 10px;
+                }
+              </style>
+              <div class="column">
+                  <mark-down class="zoomIn dynamic-rendering">
+                    ```javascript
+                    const gza = require('gza')
+
+                    gza`
+                    ＜wrap-counter ${{counter: 0}}＞
+                      ${settings ⇒ `Counter: ${settings.counter}`}
+                    ＜/wrap-counter＞
+                    `
+
+                    document.body.innerHTML +=
+                      '＜wrap-counter＞＜/wrap-counter＞'
+
+                    let el = document.querySelector('wrap-counter')
+                    setInterval(() ⇒ el.counter += 1, 1000)
+                    ```
+                  </mark-down>
+                  <script>
+                    let defaults = {counter: 0}
+                    gza`
+                    <wrap-counter ${defaults}>
+                      ${settings => `Counter: ${settings.counter}`}
+                    </wrap-counter>
+                    `
+                  </script>
+                  <wrap-counter id="example-wrap"></wrap-counter>
+                  <script>
+                    let el = document.querySelector('wrap-counter')
+                    setInterval(() => el.counter += 1, 1000)
+                  </script>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div class="wrap">
+            <div class="grid vertical-align">
+              <div class="column">
+                <h3><strong>Initialization Functions</strong></h3>
+                <p class="text-intro">You can setup things in your init function.</p>
+                <p>TODO: write text..</p>
+              </div>
+              <!-- .end .column -->
+              <style>
+                mark-down.dynamic-rendering pre {
+                  font-size: 80%;
+                }
+                mark-down.dynamic-rendering {
+                  min-width: 460px;
+                }
+                btn-counter#example-btn-counter {
+                  min-width: 460px;
+                  background: #fff;
+                  border: 1px solid rgba(0, 20, 80, 0.1);
+                  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  padding: 10px 10px 10px 10px;
+                }
+              </style>
+              <div class="column">
+                  <mark-down class="zoomIn dynamic-rendering">
+                    ```javascript
+                    const gza = require('gza')
+
+                    gza`
+                    ${element ⇒ {
+                      let button = document.createElement('button')
+                      button.onclick = () ⇒ element.counter += 1
+                      element.addSetting('button', button)
+                    }}
+                    ＜btn-counter ${{counter: 0}}＞
+                      ${settings ⇒ settings.button}
+                      <span>|</span>
+                      ${settings ⇒ `Counter: ${settings.counter}`}
+                    ＜/btn-counter＞
+                    `
+
+                    document.body.innerHTML +=
+                      '＜btn-counter＞＜/btn-counter＞'
+                    ```
+                  </mark-down>
+                  <script>
+                    gza`
+                    ${element => {
+                      let button = document.createElement('button')
+                      button.textContent = 'Click Me'
+                      button.onclick = () => element.counter += 1
+                      element.addSetting('button', button)
+                    }}
+                    <btn-counter ${{counter: 0}}>
+                      ${settings => settings.button}
+                      <span>|</span>
+                      ${settings => `Counter: ${settings.counter}`}
+                    </btn-counter>
+                    `
+                  </script>
+                  <btn-counter id="example-btn-counter"></btn-counter>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" >
+          <div class="wrap" id="settings-slide">
+            <style>
+              ul.settings-list blockquote {
+                font-family: Courier New, Courier, monospace;
+                background-color:white;
+                border: 1px solid rgba(0, 20, 80, 0.1);
+                -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                padding: 5px 5px 5px 5px;
+                line-height: 80%;
+              }
+              div#settings-slide h3 {
+                margin-bottom: 10px;
+                margin-top: 20px;
+              }
+            </style>
+            <h3>Defining Settings</h3>
+            <ul class="settings-list">
+              <li>Set a default using <blockquote>gza`&lt;my-element ${{prop: 'default'}}&gt;`</blockquote></li>
+              <li>Activate a list of settings to be set later by element attributes/properties. <blockquote>gza`&lt;my-element ${['propname']}&gt;`</blockquote></li>
+              <li>Call <blockquote>element.addSetting(key, value)</blockquote></li>
+              <li>Create a promise for an eventual setting <blockquote>element.waitFor(key)</blockquote></li>
+            </ul>
+            <h3>Changing Settings</h3>
+            <ul class="settings-list">
+              <li>Set element attributes that have been previously defined as settings.
+                <ul>
+                  <li><blockquote>&lt;my-element prop="pass"&gt;</blockquote></li>
+                  <li><blockquote>element.setAttribute('prop', 'pass')</blockquote></li>
+                </ul>
+              </li>
+              <li>Set element attributes that have been previously defined as settings.
+                <ul>
+                  <li>
+                    <blockquote>element.prop = 'pass'</blockquote>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- .end .wrap -->
+        </section>
+
+        <section>
+          <!--.wrap = container (width: 90%) -->
+          <div class="wrap">
+            <div class="grid vertical-align">
+              <div class="column">
+                <h3><strong>Requiring State</strong></h3>
+                <p class="text-intro">There may be some state that you absolutely require before working.</p>
+                <p>Since rza accepts async functions and thenabales in all initialization and template functions you can effectively block rendering at any stage
+                by waiting on a promise.
+                </p>
+                <p>
+                  Notice that none of the content in the template is rendered until the
+                  promise is resolved.
+                </p>
+              </div>
+              <!-- .end .column -->
+              <style>
+                mark-down.dynamic-rendering pre {
+                  font-size: 80%;
+                }
+                mark-down.dynamic-rendering {
+                  min-width: 460px;
+                }
+                manual-count-container {
+                  min-width: 460px;
+                  background: #fff;
+                  border: 1px solid rgba(0, 20, 80, 0.1);
+                  -webkit-box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  box-shadow: 0 8px 16px rgba(0, 20, 80, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+                  padding: 10px 10px 10px 10px;
+                }
+              </style>
+              <div class="column">
+                  <mark-down class="zoomIn dynamic-rendering">
+                    ```javascript
+                    const gza = require('gza')
+
+                    gza`
+                    ＜manual-count＞
+                      ＜span＞Counter: ＜/span＞
+                      ${settings ⇒ settings.waitFor('counter')}
+                      ＜span＞ | ＜/span＞
+                    ＜/manual-count＞
+                    `
+
+                    document.body.innerHTML +=
+                      '＜manual-count＞＜/＜manual-count＞'
+                    let i = 0
+                    let el = document.querySelector('manual-count')
+                    let button = document.createElement('button')
+                    button.onclick = () ⇒ el.counter = i = i++
+                    document.body.appendChild(button)
+                    ```
+                  </mark-down>
+                  <manual-count-container>
+                  </manual-count-container>
+                  <script>
+                    gza`
+                    <manual-count>
+                      <span>Counter: </span>
+                      ${settings => settings.waitFor('counter')}
+                      <span> | </span>
+                    </manual-count>
+                    `
+                    var i = 0
+                    var container = document.querySelector('manual-count-container')
+                    container.innerHTML +=
+                      `<manual-count id="example-manual-counter"></manual-count>`
+                    var elem = document.querySelector('manual-count#example-manual-counter')
+                    var button = document.createElement('button')
+                    button.textContent = 'Click Me!'
+                    button.onclick = () => elem.counter = i = i + 1
+                    container.appendChild(button)
+                  </script>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+      <!-- end article -->
+    </main>
+
+    <!-- Required -->
+    <script src="static/js/webslides.js"></script>
+    <script>
+      window.ws = new WebSlides();
+    </script>
+
+    <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
+    <script defer src="static/js/svg-icons.js"></script>
+
+  </body>
+</html>
