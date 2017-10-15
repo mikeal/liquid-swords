@@ -1,6 +1,6 @@
 {
   "name": "liquid-swords",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "test": "standard",
     "precommit": "npm test",
     "prepush": "npm test",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "config": {
     "commitizen": {
@@ -26,6 +27,12 @@
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.3",
-    "validate-commit-msg": "^2.14.0"
+    "standard": "^10.0.3",
+    "validate-commit-msg": "^2.14.0",
+    "semantic-release": "^8.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeal/liquid-swords.git"
   }
 }
